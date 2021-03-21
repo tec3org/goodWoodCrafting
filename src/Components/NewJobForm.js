@@ -6,18 +6,22 @@ import {Cancel,
         CreateJob} from './Styled'
 
 class NewJobForm extends Component {
-
-    state= {
-        error: null,
-        inputs: [{material: '', amount: 0}]
+    constructor(props) {
+        super(props)
+        this.state = {
+            error: null,
+            inputs: [{material: '', amount: 0}],
+            sum: 0
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSum = this.handleSum.bind(this)
     }
 
     firstInput = React.createRef();
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const { price } = event.target;
-
         this.setState({ error: null})
     }
 
@@ -27,14 +31,13 @@ class NewJobForm extends Component {
 
 
     handleChange = (e) => {
-        if(['material', 'amount'].includes(e.target.className) ) {
-            let inputs = [this.state.inputs]
+        this.setState({input: e.target.value})
+    }
 
-            inputs[e.target.dataset.id][e.target.className] = e.target.value
-            this.setState({ inputs }, () => console.log(this.state.inputs))
-        } else {
-            this.setState({ [e.target.name]: e.target.value})
-        }
+    handleSum = (event) => {
+        this.setState({
+            inputs: event.target.value
+        })
     }
 
     componentDidMount() {
@@ -43,7 +46,12 @@ class NewJobForm extends Component {
 
     render() {
 
-        const {error, inputs} = this.state;
+        const {error, inputs, sum} = this.state;
+        let initialValue = 0
+        // let sum = inputs.amount.reduce(
+        //     (accumulator, currentValue) => accumulator + currentValue.amount, initialValue
+        // )
+        console.log(inputs)
 
         return (
             <div>
@@ -89,21 +97,24 @@ class NewJobForm extends Component {
                                         type='text'
                                         placeholder='Type'
                                         name={inputId}
+                                        id={inputId}
                                     />
                                     <label htmlFor={amntId}> {amntId}: </label>
                                     <input 
                                         type='text'
                                         placeholder='Cost'
                                         name={amntId}
+                                        id={amntId}
+                                        onChange={this.handleSum}
                                     />
                                 <button> - </button>
                                 </div>
                             )
                         })}
                         <br/>
-                        {/* <label>
-                            {for(let i = 0; )}
-                        </label> */}
+                        {/* <label>Total: {sum}</label> */}
+                        <br/>
+                        <br/>
                         <CreateJob type='submit'>Save</CreateJob>
                         <Link to="/Guides">
                           <Cancel>Cancel</Cancel>

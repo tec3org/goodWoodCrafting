@@ -103,6 +103,39 @@ const CreateJob = styled.button`
 }
 `
 
+const NoJob = styled.div`
+width: 30%;
+height: fit-content;
+margin: 180px auto;
+backdrop-filter: blur(8px);
+border-radius: 10px;
+box-shadow: -5px -5px 27px #486a87, 5px 5px 27px #486a87;
+img {
+  width: 100%;
+  height: auto;
+}
+animation: 3s ${fdInDown};
+`
+const Editing = styled.button`
+color: #0d3b4c;
+text-decoration: none;
+text-shadow: 2px 2px 2px whitesmoke;
+border-radius: 10px;
+padding: 0.5rem 1rem;
+background: #f4f4ed;
+box-shadow: inset 2px 2px 5px #486a87, inset -2px -2px 5px #486a87;
+font-weight: bold;
+margin-bottom: 20px;
+margin-right: 20px;
+:hover {
+  transition: all 0.3s ease-out;
+  background-color: #0d3b4c;
+  color: whitesmoke;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px whitesmoke;
+}
+`
+
 
 
 export {
@@ -110,5 +143,7 @@ export {
     JobForm,
     Cancel,
     Deleted,
-    CreateJob
+    CreateJob,
+    NoJob,
+    Editing
 }

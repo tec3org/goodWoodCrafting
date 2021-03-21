@@ -53,10 +53,10 @@ export class JobListProvider extends Component {
             error: this.state.error,
             setError: this.setError,
             clearError: this.clearError,
-            setJob: this.setjob,
-            addJob: this.addjob,
-            updateJob: this.updatejob,
-            deleteJob: this.deletejob,
+            setJob: this.setJob,
+            addJob: this.addJob,
+            updateJob: this.updateJob,
+            deleteJob: this.deleteJob,
         }
 
         return(
